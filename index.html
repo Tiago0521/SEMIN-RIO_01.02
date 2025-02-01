@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Calculadora Avançada</title>
+    <title>Calculadora Científica</title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjs/10.6.4/math.min.js"></script>
     <style>
         body {
@@ -21,6 +21,7 @@
             border-radius: 10px;
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
             text-align: center;
+            width: 300px;
         }
         input {
             width: 100%;
@@ -28,10 +29,14 @@
             font-size: 1.2rem;
             margin-bottom: 10px;
         }
+        .buttons {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 5px;
+        }
         button {
-            padding: 10px 20px;
+            padding: 10px;
             font-size: 1rem;
-            margin: 5px;
             border: none;
             border-radius: 5px;
             background: #007bff;
@@ -46,16 +51,43 @@
 </head>
 <body>
     <div class="calculator">
-        <h1>Calculadora Avançada</h1>
-        <input type="text" id="expression" placeholder="Digite a expressão em inglês">
-        <button onclick="calculate()">Calcular</button>
-        <button onclick="clearInput()">Limpar</button>
+        <h1>Calculadora Científica</h1>
+        <input type="text" id="expression" placeholder="Digite a expressão">
+        <div class="buttons">
+            <button onclick="appendExpression('sin(')">sin</button>
+            <button onclick="appendExpression('cos(')">cos</button>
+            <button onclick="appendExpression('log(')">log</button>
+            <button onclick="appendExpression('sqrt(')">√</button>
+            <button onclick="appendExpression('mean([')">Média</button>
+            <button onclick="appendExpression('std([')">Desvio Padrão</button>
+            <button onclick="appendExpression('^')">^</button>
+            <button onclick="appendExpression(')')">)</button>
+            <button onclick="appendExpression('7')">7</button>
+            <button onclick="appendExpression('8')">8</button>
+            <button onclick="appendExpression('9')">9</button>
+            <button onclick="appendExpression('/')">/</button>
+            <button onclick="appendExpression('4')">4</button>
+            <button onclick="appendExpression('5')">5</button>
+            <button onclick="appendExpression('6')">6</button>
+            <button onclick="appendExpression('*')">*</button>
+            <button onclick="appendExpression('1')">1</button>
+            <button onclick="appendExpression('2')">2</button>
+            <button onclick="appendExpression('3')">3</button>
+            <button onclick="appendExpression('-')">-</button>
+            <button onclick="appendExpression('0')">0</button>
+            <button onclick="appendExpression('.')">.</button>
+            <button onclick="calculate()">=</button>
+            <button onclick="appendExpression('+')">+</button>
+        </div>
+        <button onclick="clearInput()" style="width: 100%; margin-top: 10px;">Limpar</button>
         <h2>Resultado: <span id="result"></span></h2>
-        <h3>Exemplos de uso:</h3>
-        <p>sin(30), cos(45), tan(60), sqrt(16), log(10), exp(2), mean([1,2,3,4,5])</p>
     </div>
 
     <script>
+        function appendExpression(value) {
+            document.getElementById("expression").value += value;
+        }
+        
         function calculate() {
             try {
                 let expression = document.getElementById("expression").value;
@@ -73,3 +105,4 @@
     </script>
 </body>
 </html>
+
